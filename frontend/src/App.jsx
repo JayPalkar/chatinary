@@ -1,4 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
+
 import Navbar from "./components/navbar";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/homePage";
@@ -6,8 +10,6 @@ import LoginPage from "./pages/loginPage";
 import SettingsPage from "./pages/settingsPage";
 import ProfilePage from "./pages/profilePage";
 import { useAuthenticationStore } from "./store/useAuthenticationStore";
-import { useEffect } from "react";
-import { Loader } from "lucide-react";
 
 const App = () => {
   const { authUser, checkAuthentication, isCheckingAuth } =
@@ -47,6 +49,7 @@ const App = () => {
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
+      <Toaster />
     </div>
   );
 };
