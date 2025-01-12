@@ -1,4 +1,4 @@
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthenticationStore } from "../store/useAuthenticationStore";
 import { Bolt, CircleUserRound, LogOut, Send } from "lucide-react";
 
