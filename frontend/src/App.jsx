@@ -4,7 +4,7 @@ import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 import Navbar from "./components/navbar";
-import SignUpPage from "./pages/SignUpPage";
+import SignUpPage from "./pages/signUpPage";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import SettingsPage from "./pages/settingsPage";
