@@ -10,10 +10,12 @@ import LoginPage from "./pages/loginPage";
 import SettingsPage from "./pages/settingsPage";
 import ProfilePage from "./pages/profilePage";
 import { useAuthenticationStore } from "./store/useAuthenticationStore";
+import { useThemeStore } from "./store/useThemeStore";
 
 const App = () => {
   const { authUser, checkAuthentication, isCheckingAuth } =
     useAuthenticationStore();
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     checkAuthentication();
@@ -28,7 +30,7 @@ const App = () => {
       </div>
     );
   return (
-    <div>
+    <div data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
