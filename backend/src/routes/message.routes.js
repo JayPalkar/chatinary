@@ -9,8 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get("/users", protectRoute, getUsersForSidebar);
+router.get("/users", protectRoute, getAllUsers);
 router.get("/:id", protectRoute, getMessages);
+
+router.get("/chats", protectRoute, getAllChatsForSidebar);
 
 router.post("/send/:id", protectRoute, sendMessage);
 
