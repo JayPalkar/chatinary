@@ -2,8 +2,9 @@ import express from "express";
 
 import { protectRoute } from "../middleware/authentication.middleware.js";
 import {
+  getAllChatsForSidebar,
+  getAllUsers,
   getMessages,
-  getUsersForSidebar,
   sendMessage,
 } from "../controllers/message.controller.js";
 
