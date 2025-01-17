@@ -18,24 +18,26 @@ const ChatContainer = () => {
 
   if (isMessagesLoading) {
     return (
-      <div className="flex-1 flex flex-col overflow-auto">
+      <div className="flex-1 flex flex-col h-full">
         <ChatHeader />
-        <MessageLoading />
+        <div className="flex-1 overflow-auto">
+          <MessageLoading />
+        </div>
         <MessageInput />
       </div>
     );
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto">
+    <div className="flex-1 flex flex-col h-full">
       <ChatHeader />
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-scroll p-4 space-y-4">
         {messages.map((message) => (
           <div
             key={message._id}
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
-            }  `}
+            }`}
           >
             <div className="chat-image avatar">
               <div className="size-10 rounded-full border">
