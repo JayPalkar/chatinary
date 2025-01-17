@@ -40,6 +40,7 @@ const ProfilePage = () => {
                 className={`
                   absolute bottom-0 right-0 
                   bg-base-content hover:scale-105
+                  border-4
                   p-2 rounded-full cursor-pointer 
                   transition-all duration-200
                   ${

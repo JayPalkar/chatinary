@@ -24,8 +24,8 @@ export const getAllChatsForSidebar = async (req, res) => {
       $or: [{ senderId: loggedInUser }, { receiverId: loggedInUser }],
     }).select("senderId receiverId -_id");
 
-    const chatUserIds = new set();
-    message.forEach((msg) => {
+    const chatUserIds = new Set();
+    messages.forEach((msg) => {
       if (msg.senderId.toString() !== loggedInUser.toString()) {
         chatUserIds.add(msg.senderId.toString());
       }
