@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import SidebarLoading from "./loaders/sidebarLoading";
 import { CirclePlus, MessageSquare, Users, X } from "lucide-react";
+import { useAuthenticationStore } from "../store/useAuthenticationStore";
 
 const SideBar = () => {
   const [chatsVisible, setChatsVisible] = useState(true);
@@ -14,6 +15,8 @@ const SideBar = () => {
     setSelectedUser,
     isUsersLoading,
   } = useChatStore();
+
+  const { onlineUsers } = useAuthenticationStore();
 
   useEffect(() => {
     getUsers();
@@ -64,6 +67,12 @@ const SideBar = () => {
                   alt={chat.name}
                   className="size-12 object-cover rounded-full"
                 />
+                {onlineUsers.includes(chat._id) && (
+                  <span
+                    className="absolute bottom-0 right-0 size-3 bg-green-500 
+                  rounded-full ring-2 ring-zinc-900"
+                  />
+                )}
               </div>
               <div className="text-left min-w-0">
                 <div className="font-medium truncate">{chat.fullName}</div>
