@@ -63,7 +63,7 @@ const SideBar = () => {
             >
               <div className="relative">
                 <img
-                  src={chat.profilePicture || "avatar.png"}
+                  src={chat.profilePicture}
                   alt={chat.name}
                   className="size-12 object-cover rounded-full"
                 />

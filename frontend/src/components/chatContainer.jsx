@@ -48,9 +48,9 @@ const ChatContainer = () => {
     <div className="flex-1 flex flex-col h-full">
       <ChatHeader />
       <div className="flex-1 overflow-y-scroll p-4 space-y-4">
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <div
-            key={message._id || `fallback-key-${message.senderId}-${index}`}
+            key={message._id}
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
