@@ -1,0 +1,13 @@
+{
+  "name": "chatinary",
+  "version": "1.0.0",
+  "description": "Chatinary is a chatting website where users can connect with their friends and families...",
+  "main": "index.js",
+  "scripts": {
+    "build": "",
+    "start": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
