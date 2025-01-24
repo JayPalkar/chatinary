@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthenticationStore } from "../store/useAuthenticationStore";
 import { ImageUp, Mail, User } from "lucide-react";
+import toast from "react-hot-toast";
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } =
     useAuthenticationStore();
@@ -9,6 +10,12 @@ const ProfilePage = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    const maxSize = 50 * 1024;
+    if (file.size > maxSize) {
+      toast.error("Image size should be less than 50 KB.");
+      return;
+    }
 
     const reader = new FileReader();
 
