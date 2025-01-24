@@ -17,6 +17,12 @@ const MessageInput = () => {
       return;
     }
 
+    const maxSize = 50 * 1024;
+    if (file.size > maxSize) {
+      toast.error("Image size should be less than 50 KB.");
+      return;
+    }
+
     const reader = new FileReader();
     reader.onloadend = () => {
       setImagePreview(reader.result);
