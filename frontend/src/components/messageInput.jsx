@@ -80,7 +80,7 @@ const MessageInput = () => {
             className="w-full input input-bordered rounded-lg input-sm sm:input-md focus:border-primary"
             placeholder="Type a message...."
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)} 
           />
           <input
             type="file"
