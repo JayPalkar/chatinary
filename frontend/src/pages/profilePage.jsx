@@ -9,11 +9,7 @@ const ProfilePage = () => {
   const [editable, setEditable] = useState(false);
   const [userAbout, setUserAbout] = useState(authUser.about);
 
-  console.log(userAbout);
-
   const canEditAbout = () => {
-    console.log("can edit");
-
     setEditable(!editable);
   };
 
