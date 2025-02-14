@@ -1,17 +1,28 @@
 import { useState } from "react";
 import { useAuthenticationStore } from "../store/useAuthenticationStore";
-import { ImageUp, Mail, User } from "lucide-react";
+import { IdCard, ImageUp, Mail, Pencil, Save, User } from "lucide-react";
 import toast from "react-hot-toast";
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } =
     useAuthenticationStore();
   const [selectedImg, setSelectedImg] = useState(null);
+  const [editable, setEditable] = useState(false);
+  const [userAbout, setUserAbout] = useState(authUser.about);
+
+  const canEditAbout = () => {
+    setEditable(!editable);
+  };
+
+  const handleAboutUpdate = async () => {
+    await updateProfile({ about: userAbout });
+    setEditable(false);
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const maxSize = 50 * 1024;
+    const maxSize = 60 * 1024;
     if (file.size > maxSize) {
       toast.error("Image size should be less than 50 KB.");
       return;
@@ -92,6 +103,26 @@ const ProfilePage = () => {
                 {authUser?.email}
               </p>
             </div>
+            <div className="space-y-1.5">
+              <div className="text-sm text-zinc-400 flex items-center gap-2">
+                <IdCard className="w-4 h-4" />
+                About
+              </div>
+              <p className="flex px-4 py-2.5 bg-base-200 rounded-lg border justify-between">
+                {editable ? (
+                  <input
+                    className="w-full outline-none bg-transparent"
+                    placeholder="Write what you feel"
+                    onChange={(e) => setUserAbout(e.target.value)}
+                  />
+                ) : (
+                  authUser?.about
+                )}
+                <button onClick={editable ? handleAboutUpdate : canEditAbout}>
+                  {editable ? <Save /> : <Pencil />}
+                </button>
+              </p>
+            </div>
           </div>
           <div className="mt-6 bg-base-300 rounded-xl p-6">
             <h2 className="text-lg font-medium  mb-4">Account Information</h2>
@@ -99,10 +130,6 @@ const ProfilePage = () => {
               <div className="flex items-center justify-between py-2 border-b border-zinc-700">
                 <span>Member Since</span>
                 <span>{authUser.createdAt?.split("T")[0]}</span>
-              </div>
-              <div className="flex items-center justify-between py-2">
-                <span>Account Status</span>
-                <span className="text-green-500">Active</span>
               </div>
             </div>
           </div>
