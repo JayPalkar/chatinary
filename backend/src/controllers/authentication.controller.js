@@ -96,23 +96,27 @@ export const logout = (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { name, profilePicture, about } = req.body;
+    const { profilePicture, about } = req.body;
     const userId = req.user._id;
 
-    if (!profilePicture) {
-      return res.status(400).json({ message: "Profile picture not provided" });
+    const updateFields = {};
+
+    if (profilePicture) {
+      const uploadResponse = await cloudinary.uploader.upload(profilePicture);
+      updateFields.profilePicture = uploadResponse.secure_url;
     }
 
-    const uploadResponse = await cloudinary.uploader.upload(profilePicture);
+    if (about) {
+      updateFields.about = about;
+    }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      {
-        profilePicture: uploadResponse.secure_url,
-        about: about,
-      },
-      { new: true }
-    );
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).json({ message: "No valid fields to update" });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updateFields, {
+      new: true,
+    });
 
     res.status(200).json(updatedUser);
   } catch (error) {
