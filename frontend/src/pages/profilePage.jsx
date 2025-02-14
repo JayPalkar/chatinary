@@ -115,7 +115,15 @@ const ProfilePage = () => {
                 About
               </div>
               <p className="flex px-4 py-2.5 bg-base-200 rounded-lg border justify-between">
-                {authUser?.about}
+                {editable ? (
+                  <input
+                    className="w-full outline-none bg-transparent"
+                    placeholder="Write what you feel"
+                    onChange={(e) => setUserAbout(e.target.value)}
+                  />
+                ) : (
+                  authUser?.about
+                )}
                 <button onClick={editable ? handleAboutUpdate : canEditAbout}>
                   {editable ? <Save /> : <Pencil />}
                 </button>
