@@ -68,16 +68,16 @@ const ChatContainer = () => {
                 />
               </div>
             </div>
-            
+
             <div className="chat-bubble flex flex-col">
-              {message.image && (
+              {message.decryptedImage && (
                 <img
-                  src={message.image}
+                  src={message.decryptedImage}
                   alt="Attachment"
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
-              {message.text && <p>{message.text}</p>}
+              {message.decryptedText && <p>{message.decryptedText}</p>}
               <div
                 className={`mb-1 ${
                   message.senderId === authUser._id ? "text-right" : "text-left"

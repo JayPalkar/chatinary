@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "New To Chatinary",
     },
+    publicKey: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,

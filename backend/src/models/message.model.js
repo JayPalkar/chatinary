@@ -12,10 +12,25 @@ const messageSchema = new mongoose.Schema(
       ref: "User",
       require: true,
     },
-    text: {
+    // text: {
+    //   type: String,
+    // },
+    image: {
       type: String,
     },
-    image: {
+    ciphertext: {
+      type: String,
+    },
+    iv: {
+      type: String,
+    },
+    salt: {
+      type: String,
+    },
+    senderPublicKey: {
+      type: String,
+    },
+    imageiv: {
       type: String,
     },
   },
