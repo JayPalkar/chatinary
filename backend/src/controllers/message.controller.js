@@ -67,21 +67,38 @@ export const getMessages = async (req, res) => {
 
 export const sendMessage = async (req, res) => {
   try {
-    const { text, image } = req.body;
+    // const { text, image } = req.body;
+    // const { id: receiverId } = req.params;
+    // const senderId = req.user._id;
+
+    // let imageUrl;
+    // if (image) {
+    //   const uploadResponse = await cloudinary.uploader.upload(image);
+    //   imageUrl = uploadResponse.secure_url;
+    // }
+
+    // const newMessage = new Message({
+    //   senderId,
+    //   receiverId,
+    //   text,
+    //   image: imageUrl,
+    // });
+    const { ciphertext, iv, salt, senderPublicKey, image } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
-    let imageUrl;
-    if (image) {
-      const uploadResponse = await cloudinary.uploader.upload(image);
-      imageUrl = uploadResponse.secure_url;
+    if (!ciphertext || !iv || !salt || !senderPublicKey) {
+      return res.status(400).json({ message: "Missing encrypted payload" });
     }
 
     const newMessage = new Message({
       senderId,
       receiverId,
-      text,
-      image: imageUrl,
+      ciphertext,
+      iv,
+      salt,
+      senderPublicKey,
+      image,
     });
 
     await newMessage.save();
