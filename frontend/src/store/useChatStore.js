@@ -215,7 +215,6 @@ export const useChatStore = create((set, get) => ({
         }
 
         if (newMessage.image) {
-          // if you stored separate imageIv use that; in our sample we used imageIv field
           const imageIv = newMessage.imageIv || newMessage.iv;
           const decryptedImageDataUrl = await decryptText(
             aesKey,

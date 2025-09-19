@@ -12,9 +12,6 @@ const messageSchema = new mongoose.Schema(
       ref: "User",
       require: true,
     },
-    // text: {
-    //   type: String,
-    // },
     image: {
       type: String,
     },
